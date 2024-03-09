@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }).then(() => {
                 console.log('Voto enviado com sucesso para a votação: ' + nomeVotacaoSelecionado);
             }).catch((error) => {
+                document.getElementById("loadingOverlay").style.display = "none";
                 console.error("Erro ao enviar o voto para o Firestore: " + error.message);
                 alert('Erro ao enviar o voto. Por favor, tente novamente mais tarde.');
             });
