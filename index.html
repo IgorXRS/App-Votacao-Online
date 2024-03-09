@@ -8,14 +8,14 @@
 </head>
 <body>
     <header>
-        <i onclick="mostrarCadastro()" class="bi bi-plus-square"></i>
+        <div id="icon"><i onclick="mostrarCadastro()" title="Cadastra Nova Pesquisa" class="bi bi-plus-square"></i><i title="Ver resultados" onclick="mostrarResultados()" class="bi bi-card-checklist"></i></div>
         <img src="./img/Prancheta 1.png" alt="devix">
-        <i onclick="mostrarVotacao()" class="bi bi-arrow-left-square"></i>
+        <i title="Voltar" onclick="mostrarVotacao()" class="bi bi-arrow-left-square"></i>
     </header>
 
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
-      </div>
+        <div class="center"><div class="loading-spinner"><img src="./img/icon.png" alt="devix"></div></div>
+    </div>
 
 
     <section class="votacao" id="sectionVotacao">
@@ -124,6 +124,13 @@
             document.getElementById('cadastroVotacao').classList.add('hidden');
             document.getElementById('sectionVotacao').classList.remove('hidden');
             document.getElementById('resultadosVotacao').classList.add('hidden');
+            document.getElementById('cadastroCriado').classList.add('hidden');
+        }
+
+        function mostrarResultados() {
+            document.getElementById('cadastroVotacao').classList.add('hidden');
+            document.getElementById('sectionVotacao').classList.add('hidden');
+            document.getElementById('resultadosVotacao').classList.remove('hidden');
             document.getElementById('cadastroCriado').classList.add('hidden');
         }
 
