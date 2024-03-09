@@ -125,7 +125,7 @@
 
         function copiarLink() {
             const nomeVotacaoSelecionada = document.getElementById('selectPesquisas').value;
-            const url = window.location.origin + '/index.html?votacao=' + nomeVotacaoSelecionada;
+            const url = window.location.origin + '/App-Votacao-Online/?votacao=' + nomeVotacaoSelecionada;
 
             // Copiar o link para a área de transferência
             navigator.clipboard.writeText(url)
@@ -141,7 +141,7 @@
 
         function copiarLink2() {
             const nomeVotacaoSelecionada = document.getElementById('selectPesquisas2').textContent;
-            const url = window.location.origin + '/index.html?votacao=' + nomeVotacaoSelecionada;
+            const url = window.location.origin + '/App-Votacao-Online/?votacao=' + nomeVotacaoSelecionada;
 
             // Copiar o link para a área de transferência
             navigator.clipboard.writeText(url)
