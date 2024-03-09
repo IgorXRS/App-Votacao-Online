@@ -291,9 +291,11 @@ async function getDeviceId() {
         const data = await response.json();
         const ip = data.ip; // Obtenha o endereço IP do usuário
 
-        // Concatenar o endereço IP com a string "user"
-        const hash = 'user' + ip;
+        // Gerar um código aleatório de 7 dígitos
+        const randomCode = Math.floor(1000000 + Math.random() * 9000000); // Garante que o código terá 7 dígitos
 
+        // Concatenar o código aleatório com o endereço IP
+        const hash = randomCode + '_' + ip;
 
         return hash;
     } catch (error) {
