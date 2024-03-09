@@ -1,0 +1,366 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20PX;
+    height: 50px;
+    width: 100%;
+    background: black;
+    margin-bottom: 20px;
+    color: white;
+}
+
+header img{
+    width: 120px;
+}
+
+footer > P{
+    font-size: 11px;
+    margin: 20px;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80vw;
+    margin-top: 70px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid  rgb(4, 0, 66);
+}
+
+header i{
+    cursor: pointer;
+}
+
+header i:hover{
+    font-weight: bold;
+    color: rgb(172, 0, 252);
+}
+
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.title h1{
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.title p{
+    font-size: 13px;
+    color: rgb(63, 63, 63);
+}
+
+.infor > p{
+    font-size: 12px;
+    margin: 10px;
+    width: 320px;
+    color: rgb(112, 112, 112);
+    text-align: justify;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+}
+
+.candidato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgb(211, 211, 211);
+    margin: 5px;
+}
+
+.candidato img{
+    margin-top: 5px;
+    margin: 5px;
+    width: 140px;
+    height: 150px;
+}
+
+.candidato h2{
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 7px;
+}
+
+.candidato button{
+    margin-bottom: 5px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.212);
+    cursor: pointer;
+}
+
+.candidato button:hover{
+    font-weight: bold;
+}
+
+#submit{
+    border: none;
+    width: 150px;
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgb(26, 26, 26);
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#submit:hover{
+    background: rgb(4, 0, 66);
+}
+
+.ativado{
+    background: linear-gradient(180deg, rgb(7, 0, 36) 0%, rgb(10, 0, 54) 35%, rgb(6, 0, 90)100%);
+    color: white;
+}
+
+
+
+
+.resultadosParciais img{
+    width: 60px;
+    margin-right: 10px;
+}
+
+.resultadosParciais h4 {
+    margin-left: auto;
+    color: white;
+    margin-right: 10px;
+    width: 80px;
+    height: 50px;
+    font-size: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+}
+
+
+
+.resultadosParciais > p{
+    width: 300px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.resultadosParciais > h2 {
+    color: rgb(8, 0, 51);
+    border-left: 5px solid rgb(8, 0, 51);
+    padding-left: 15px;
+}
+
+.candidatoResultado{
+    display: flex;
+    align-items: center;
+    width: 320px;
+    background: linear-gradient(130deg, rgb(5, 0, 36) 0%, rgb(5, 0, 36) 35%, rgb(2, 0, 114) 100%);
+    border-radius: 5px;
+    margin: 10px 0px;
+}
+
+.candidatoResultado p{
+    background: rgb(13, 0, 83);
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.candidatoResultado img{
+    padding: 4px;
+    width: 50px;
+    border-radius: 10px;
+}
+
+.barra{
+    height: 10px;
+    width: 50px;
+    background: red;
+}
+
+.candNome p{
+    margin-top: 5px;
+   font-size: 12px;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   letter-spacing: 2px;
+   color: rgb(13, 0, 83);
+}
+
+#listaCandidatos img{
+    width: 30px;
+}
+#listaCandidatos li{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(221, 221, 221);
+    padding: 5px;
+    border-bottom: 1px solid rgb(13, 0, 83);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.nameCand{
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.imgCand{
+    width: 160px;
+    display: flex;
+    justify-content: center;
+}
+
+.topTitulos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgb(13, 0, 83);
+    border-top: 1px solid rgb(13, 0, 83);
+    padding: 5px;
+
+}
+
+
+.cadastro h2{
+    color: rgb(8, 0, 51);
+    border-left: 5px solid rgb(8, 0, 51);
+    padding-left: 10px;
+    text-transform: uppercase;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+form label{
+    color: rgb(8, 0, 51);
+    font-weight: bold;
+    font-size: 10px;
+    display: flex;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+form > input{
+    margin: 3px;
+    width: 320px;
+    height: 30px;
+    border: none;
+    background: rgb(230, 230, 230);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+form textarea{
+    margin: 3px;
+    width: 320px;
+    height: 50px;
+    border: none;
+    background: rgb(230, 230, 230);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    resize: vertical;
+}
+
+form h3{
+    color: rgb(8, 0, 51);
+    padding-left: 10px;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#adicionarCandidato{
+    background: rgb(8, 0, 51);
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+}
+
+#foto1Candidato{
+    height: 40px;
+}
+
+#SalvarVotacao{
+    background: rgb(8, 0, 51);
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    width: 180px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 70px;
+}
+
+.hidden {
+    display: none;
+}
+
+#buttonLink, #buttonLink2{
+    background: rgb(0, 121, 10);
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    color: white;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#buttonLink2{
+    margin-top: 30px;
+}

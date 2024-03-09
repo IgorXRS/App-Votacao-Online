@@ -1,0 +1,171 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVIX</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" type="imagex/png" href="./img/icon.png">
+</head>
+<body>
+    <header>
+        <i onclick="mostrarCadastro()" class="bi bi-plus-square"></i>
+        <img src="./img/Prancheta 1.png" alt="devix">
+        <i onclick="mostrarVotacao()" class="bi bi-arrow-left-square"></i>
+    </header>
+
+
+    <section class="votacao" id="sectionVotacao">
+        <div class="title">
+            <h1>PRÉ-CANDIDATO A PREFEITO</h1>
+            <P>CABECEIRAS - GO / 2024</P>
+        </div>
+
+        <div class="infor">
+            <p>Selecione seu candidato e clique em enviar voto, cada dispositivo só pode votar uma vez, para termos uma votação mais próxima da realidade</p>
+        </div>
+
+        <div style="display: none;">
+            <select id="selectPesquisas">
+                <option value="" selected disabled hidden>Selecione uma votação</option>
+            </select>
+            <button id="btnPesquisas">Pesquisar</button>
+        </div>
+        <div class="container">
+
+           
+        </div>
+
+        <button id="submit" class="enviarVoto">Enviar Voto!</button>
+        <button onclick="copiarLink()" id="buttonLink">Compartilhar Link</button>
+    </section>
+
+    <section class="resultados hidden" id="resultadosVotacao">
+        <div class="resultadosParciais">
+            <!--
+            <h2>RESULTADO PARCIAL</h2>
+            <P>Votação iniciada em 08/03/2024, finalizar em 15/03/2024.</P>
+
+            <div class="candNome"><p>NOME CANDIDATO</p></div>
+            <div class="candidatoResultado">
+                <p>800</p><div class="barra" id="cand01"></div><img src="/img/cand.jpg" alt="">
+            </div>
+            -->
+    </section>
+
+    <section class="cadastro hidden" id="cadastroVotacao">
+        <h2>Cadastro de Nova Votação</h2>
+        <form id="form-votacao">
+            <label for="nomeVotacao">Nome da Votação:</label>
+            <input type="text" id="nomeVotacao" name="nomeVotacao" placeholder="Digite o nome da votação..." required>
+            <br>
+            <!--
+            <label for="nomeVotacao">Inicio da pesquisa:</label>
+            <input type="date" id="dataInicioVotacao" name="dataInicioVotacao" placeholder="Digite a data de inicio da pesquisa..." required>
+            <br>
+            <label for="nomeVotacao">Fim da pesquisa:</label>
+            <input type="date" id="dataFimVotacao" name="dataFimVotacao" placeholder="Digite a data do fim da pesquisa..." required>
+            <br>-->
+            <label for="descricaoVotacao">Descrição:</label>
+            <textarea id="descricaoVotacao" name="descricaoVotacao" placeholder="Digite a descrição da votação..." required></textarea>
+            <br>
+            <label for="autorVotacao">Autor da Votação:</label>
+            <input type="text" id="autorVotacao" name="autorVotacao" placeholder="Digite o autor da votaçao..." required>
+            <br>
+            <hr>
+            <h3>Adicionar Candidatos</h3>
+            <label for="nomeCandidato">Nome do Candidato:</label>
+            <input type="text" id="nomeCandidato" placeholder="Digite o nome do Candidato..." name="nomeCandidato">
+            <br>
+            <label for="foto1Candidato">Foto:</label>
+            <input type="file" id="foto1Candidato" name="foto1Candidato" accept="image/*">
+            <br>
+            <button type="button" id="adicionarCandidato">Adicionar Candidato</button>
+            <br>
+            <div class="topTitulos">
+                <div class="nameCand"><span>NOME</span></div>
+                <div class="imgCand"><span>Foto</span></div>
+            </div>
+            <ul id="listaCandidatos">
+                <!-- Lista de candidatos adicionados será exibida aqui -->
+            </ul>
+            <button id="SalvarVotacao" type="submit">Salvar Votação</button>   
+            <br>
+        </form>
+    </section>
+
+    <section class="cadastroCriado hidden" id="cadastroCriado">
+        <h2>Pesquisa Criada com Sucesso!</h2>
+        
+        <div style="display: none;">
+            <p id="selectPesquisas2">
+            </p>
+        </div>
+        
+        <button onclick="copiarLink2()" id="buttonLink2">Compartilhar Link</button>
+    </section>
+
+    <footer>
+        <P>© Copyright 2024 DEVIX - All Rights Reserved</P>
+    </footer>
+
+    <script>
+        function mostrarCadastro() {
+            document.getElementById('cadastroVotacao').classList.remove('hidden');
+            document.getElementById('sectionVotacao').classList.add('hidden');
+            document.getElementById('resultadosVotacao').classList.add('hidden');
+            document.getElementById('cadastroCriado').classList.add('hidden');
+        }
+
+        function mostrarVotacao() {
+            document.getElementById('cadastroVotacao').classList.add('hidden');
+            document.getElementById('sectionVotacao').classList.remove('hidden');
+            document.getElementById('resultadosVotacao').classList.add('hidden');
+            document.getElementById('cadastroCriado').classList.add('hidden');
+        }
+
+        function copiarLink() {
+            const nomeVotacaoSelecionada = document.getElementById('selectPesquisas').value;
+            const url = window.location.origin + '/index.html?votacao=' + nomeVotacaoSelecionada;
+
+            // Copiar o link para a área de transferência
+            navigator.clipboard.writeText(url)
+                .then(() => {
+                    // Alterar texto do botão para "Copiado"
+                    document.getElementById('buttonLink').textContent = 'Link Copiado';
+                })
+                .catch((error) => {
+                    // Tratar erros de cópia
+                    console.error('Erro ao copiar o link:', error);
+                });
+        }
+
+        function copiarLink2() {
+            const nomeVotacaoSelecionada = document.getElementById('selectPesquisas2').textContent;
+            const url = window.location.origin + '/index.html?votacao=' + nomeVotacaoSelecionada;
+
+            // Copiar o link para a área de transferência
+            navigator.clipboard.writeText(url)
+                .then(() => {
+                    // Alterar texto do botão para "Copiado"
+                    document.getElementById('buttonLink2').textContent = 'Link Copiado';
+                })
+                .catch((error) => {
+                    // Tratar erros de cópia
+                    console.error('Erro ao copiar o link:', error);
+                });
+        }
+
+
+    </script>
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage-compat.js"></script>
+    <script type="module" src="cmd.js"></script>
+    <script src="/js-sha256-master/build/sha256.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+
+
+</body>
+</html>
