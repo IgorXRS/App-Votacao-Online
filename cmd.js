@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const selectPesquisas = document.getElementById('selectPesquisas');
 
     // Limpar opções existentes, caso existam
-    selectPesquisas.innerHTML = '';
+    selectPesquisas.innerHTML = '<option value="">Selecione uma votação</option>';
 
     // Adicionar cada nome de pesquisa como uma opção no select
     nomesPesquisas.forEach(nomePesquisa => {
