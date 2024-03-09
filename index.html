@@ -101,8 +101,8 @@
         <h2>Pesquisa Criada com Sucesso!</h2>
         
         <div style="display: none;">
-            <p id="selectPesquisas2">
-            </p>
+            <input type="text" id="selectPesquisas2">
+            </input>
         </div>
         
         <button onclick="copiarLink2()" id="buttonLink2">Compartilhar Link</button>
@@ -159,6 +159,7 @@
         function copiarLink2() {
             // Obter o valor selecionado
             const nomeVotacaoSelecionada = document.getElementById('selectPesquisas2').value;
+            console.log(nomeVotacaoSelecionada);
 
             // Substituir espaços em branco por "%"
             const nomeVotacaoFormatado = nomeVotacaoSelecionada.replace(/\s/g, '%20');

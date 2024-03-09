@@ -198,8 +198,8 @@ formVotacao.addEventListener('submit', async (event) => {
     //const dataInicioVotacao = document.querySelector('#dataInicioVotacao').value;
     //const dataFimVotacao = document.querySelector('#dataFimVotacao').value;
 
-    document.getElementById('selectPesquisas2').innerHTML = "";
-    document.getElementById('selectPesquisas2').innerHTML = nomeVotacao;
+    document.getElementById('selectPesquisas2').value = "";
+    document.getElementById('selectPesquisas2').value = nomeVotacao;
     console.log(nomeVotacao);
     
     // Obter candidatos da lista
@@ -263,6 +263,7 @@ formVotacao.addEventListener('submit', async (event) => {
         document.getElementById("loadingOverlay").style.display = "none";
         alert('Votação cadastrada com sucesso!');
     } catch (error) {
+        document.getElementById("loadingOverlay").style.display = "none";
         console.error('Erro ao salvar votação no Firestore:', error);
         alert('Erro ao salvar votação. Por favor, tente novamente mais tarde.');
     }
