@@ -13,6 +13,10 @@
         <i onclick="mostrarVotacao()" class="bi bi-arrow-left-square"></i>
     </header>
 
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+      </div>
+
 
     <section class="votacao" id="sectionVotacao">
         <div class="title">
@@ -55,8 +59,8 @@
     <section class="cadastro hidden" id="cadastroVotacao">
         <h2>Cadastro de Nova Votação</h2>
         <form id="form-votacao">
-            <label for="nomeVotacao">Nome da Votação:</label>
-            <input type="text" id="nomeVotacao" name="nomeVotacao" placeholder="Digite o nome da votação..." required>
+            <label for="nomeVotacao">Título:</label>
+            <input type="text" id="nomeVotacao" name="nomeVotacao" placeholder="Digite o título da votação..." required>
             <br>
             <!--
             <label for="nomeVotacao">Inicio da pesquisa:</label>
@@ -65,8 +69,8 @@
             <label for="nomeVotacao">Fim da pesquisa:</label>
             <input type="date" id="dataFimVotacao" name="dataFimVotacao" placeholder="Digite a data do fim da pesquisa..." required>
             <br>-->
-            <label for="descricaoVotacao">Descrição:</label>
-            <textarea id="descricaoVotacao" name="descricaoVotacao" placeholder="Digite a descrição da votação..." required></textarea>
+            <label for="descricaoVotacao">Subtítulo:</label>
+            <textarea id="descricaoVotacao" name="descricaoVotacao" placeholder="Digite a subtítulo da votação..." required></textarea>
             <br>
             <label for="autorVotacao">Autor da Votação:</label>
             <input type="text" id="autorVotacao" name="autorVotacao" placeholder="Digite o autor da votaçao..." required>
@@ -124,8 +128,14 @@
         }
 
         function copiarLink() {
+            // Obter o valor selecionado
             const nomeVotacaoSelecionada = document.getElementById('selectPesquisas').value;
-            const url = window.location.origin + '/App-Votacao-Online/?votacao=' + nomeVotacaoSelecionada;
+
+            // Substituir espaços em branco por "%"
+            const nomeVotacaoFormatado = nomeVotacaoSelecionada.replace(/\s/g, '%20');
+
+            // Construir a URL com o nome formatado
+            const url = window.location.origin + '/App-Votacao-Online/?votacao=' + nomeVotacaoFormatado;
 
             // Copiar o link para a área de transferência
             navigator.clipboard.writeText(url)
@@ -140,8 +150,14 @@
         }
 
         function copiarLink2() {
-            const nomeVotacaoSelecionada = document.getElementById('selectPesquisas2').textContent;
-            const url = window.location.origin + '/App-Votacao-Online/?votacao=' + nomeVotacaoSelecionada;
+            // Obter o valor selecionado
+            const nomeVotacaoSelecionada = document.getElementById('selectPesquisas2').value;
+
+            // Substituir espaços em branco por "%"
+            const nomeVotacaoFormatado = nomeVotacaoSelecionada.replace(/\s/g, '%20');
+
+            // Construir a URL com o nome formatado
+            const url = window.location.origin + '/App-Votacao-Online/?votacao=' + nomeVotacaoFormatado;
 
             // Copiar o link para a área de transferência
             navigator.clipboard.writeText(url)

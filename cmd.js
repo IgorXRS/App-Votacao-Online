@@ -19,6 +19,7 @@ const db = firebase.firestore();
 
 
 document.addEventListener('DOMContentLoaded', async function() {
+
     
     const container = document.querySelector('.container');
     const candidatos = document.querySelectorAll('.candidato');
@@ -47,14 +48,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     enviarVotobtn.addEventListener('click', async (e)=>{
         e.preventDefault();
 
+        document.getElementById("loadingOverlay").style.display = "block";
+
         
     // Obtém o Device ID do dispositivo
-    const deviceId = getDeviceId();
+    const deviceId = await getDeviceId();
 
     // Verifica se o Device ID já existe no banco de dados
     const nomeVotacaoSelecionado = document.getElementById('selectPesquisas').value;
     const votosSnapshot = await db.collection('votacao').doc(nomeVotacaoSelecionado).collection('votos').doc(deviceId).get();
     if (votosSnapshot.exists) {
+        
+        document.getElementById("loadingOverlay").style.display = "none";
         alert('Você já votou neste dispositivo!');
         mostrarResultados();
         localStorage.clear();
@@ -74,18 +79,20 @@ document.addEventListener('DOMContentLoaded', async function() {
                 alert('Selecione uma votação antes de votar!');
                 return;
             }
+            const deviceId = await getDeviceId();
             // Envia o voto para o Firebase
-            db.collection('votacao').doc(nomeVotacaoSelecionado).collection('votos').doc(getDeviceId()).set({
+            db.collection('votacao').doc(nomeVotacaoSelecionado).collection('votos').doc(deviceId).set({
                 opcao: opcaoVoto,
                 horario: firebase.firestore.FieldValue.serverTimestamp(),
-                deviceId: getDeviceId(),
+                deviceId: deviceId,
             }).then(() => {
                 console.log('Voto enviado com sucesso para a votação: ' + nomeVotacaoSelecionado);
             }).catch((error) => {
                 console.error("Erro ao enviar o voto para o Firestore: " + error.message);
                 alert('Erro ao enviar o voto. Por favor, tente novamente mais tarde.');
             });
-            handleChangeResultado();
+            handleChangeResultado();  
+            document.getElementById("loadingOverlay").style.display = "none";
             mostrarResultados();
         } else {
             alert('Escolha seu candidato!');
@@ -181,6 +188,8 @@ btnAdicionarCandidato.addEventListener('click', (event) => {
 formVotacao.addEventListener('submit', async (event) => {
     event.preventDefault();
     
+    document.getElementById("loadingOverlay").style.display = "block";
+    
     // Obter valores dos campos
     const nomeVotacao = document.querySelector('#nomeVotacao').value;
     const descricaoVotacao = document.querySelector('#descricaoVotacao').value;
@@ -250,6 +259,7 @@ formVotacao.addEventListener('submit', async (event) => {
         document.getElementById('resultadosVotacao').classList.add('hidden');
         document.getElementById('cadastroCriado').classList.remove('hidden');
         
+        document.getElementById("loadingOverlay").style.display = "none";
         alert('Votação cadastrada com sucesso!');
     } catch (error) {
         console.error('Erro ao salvar votação no Firestore:', error);
@@ -259,21 +269,22 @@ formVotacao.addEventListener('submit', async (event) => {
 
 });
 
-const getDeviceId = () => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-  
-    // Desenhe algo no canvas
-    ctx.fillStyle = 'red';
-    ctx.fillRect(0, 0, 100, 100);
-  
-    // Obtenha o fingerprint do canvas
-    const fingerprint = canvas.toDataURL();
-  
-    // Calcule um hash do fingerprint
-    const hash = sha256(fingerprint);
-  
-    return hash;
+async function getDeviceId() {
+    try {
+        // Use uma solicitação síncrona para obter o endereço IP do usuário
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        const ip = data.ip; // Obtenha o endereço IP do usuário
+
+        // Concatenar o endereço IP com a string "user"
+        const hash = 'user' + ip;
+
+
+        return hash;
+    } catch (error) {
+        console.error('Erro ao obter o endereço IP:', error);
+        return null;
+    }
 };
 
 // Função para extrair o valor do parâmetro 'votacao' da URL

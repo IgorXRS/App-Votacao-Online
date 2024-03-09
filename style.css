@@ -103,8 +103,8 @@ header i:hover{
 .candidato img{
     margin-top: 5px;
     margin: 5px;
-    width: 140px;
-    height: 150px;
+    width: 120px;
+    height: 140px;
 }
 
 .candidato h2{
@@ -364,3 +364,75 @@ form h3{
 #buttonLink2{
     margin-top: 30px;
 }
+
+
+@media screen and (max-width: 350px) {
+    .imgCand{
+        width: 45%;
+    }
+    .nameCand{
+        width:  45%;
+    }
+
+    .candidatoResultado{
+        width: 100%;
+  }
+
+  .candidato img{
+    width: 100px;
+    height: 120px;
+}
+
+  .resultadosParciais > p{
+    width: 85%;
+}
+
+.infor > p{
+    width: 100%;
+}
+
+form > input{
+    width: 100%;
+}
+form textarea{
+    width: 100%;
+}
+}
+
+@media screen and (max-width: 320px) {
+
+    .candidato img{
+        width: 150px;
+        height: 170px;
+    }
+
+}
+
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+  }
+
+  .loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
