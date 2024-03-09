@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         
     // Obtém o Device ID do dispositivo
     const deviceId = await getDeviceId();
+    alert(deviceId);
 
     // Verifica se o Device ID já existe no banco de dados
     const nomeVotacaoSelecionado = document.getElementById('selectPesquisas').value;
