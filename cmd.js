@@ -44,6 +44,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Carrega os IDs de dispositivos existentes do Firebase
     const db = firebase.firestore();
 
+    // Função para verificar se o usuário já votou nesta votação
+    function usuarioJaVotouNestaVotacao(nomeVotacao) {
+        const cookies = document.cookie.split(';');
+        return cookies.some((cookie) => {
+            const [key, value] = cookie.split('=');
+            return key.trim() === `votou_${nomeVotacao}` && value.trim() === 'true';
+        });
+    }
+
     const enviarVotobtn = document.querySelector('.enviarVoto');
     enviarVotobtn.addEventListener('click', async (e)=>{
         e.preventDefault();
@@ -58,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Verifica se o Device ID já existe no banco de dados
     const nomeVotacaoSelecionado = document.getElementById('selectPesquisas').value;
     const votosSnapshot = await db.collection('votacao').doc(nomeVotacaoSelecionado).collection('votos').doc(deviceId).get();
-    if (votosSnapshot.exists) {
+    if (usuarioJaVotouNestaVotacao(nomeVotacaoSelecionado)) {
         
         document.getElementById("loadingOverlay").style.display = "none";
         alert('Você já votou neste dispositivo!');
@@ -88,6 +97,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 deviceId: deviceId,
             }).then(() => {
                 console.log('Voto enviado com sucesso para a votação: ' + nomeVotacaoSelecionado);
+                 // Marca o usuário como votou nesta votação definindo um cookie
+                document.cookie = `votou_${nomeVotacaoSelecionado}=true; max-age=86400`;
             }).catch((error) => {
                 document.getElementById("loadingOverlay").style.display = "none";
                 console.error("Erro ao enviar o voto para o Firestore: " + error.message);
@@ -97,6 +108,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             document.getElementById("loadingOverlay").style.display = "none";
             mostrarResultados();
         } else {
+            document.getElementById("loadingOverlay").style.display = "none";
             alert('Escolha seu candidato!');
         }
         localStorage.clear();
@@ -271,6 +283,7 @@ formVotacao.addEventListener('submit', async (event) => {
 });
 
 });
+
 
 async function getDeviceId() {
     try {
